@@ -1,0 +1,30 @@
+#!/bin/bash
+# Generate Release & Package files on a repository created with
+# suppository-add
+
+generated_files="Release Release.gpg Package"
+
+if [ -z "$1" ]; then 
+	echo "usage: $0 <repository path>"
+	exit 1
+fi
+
+repo_path=$1
+
+if [ ! -f $repo_path/.suppository ]; then
+	echo "Not a valid suppository."
+	exit 2	
+fi
+
+
+for dir in $(find $repo_path -type d -name "binary*"); do 
+	dpkg-scanpackages -m $dir > $dir/Packages
+done
+
+for dist in $repo_path/dists/* ; do
+	echo Codename: $(echo $dist | sed -e 's/.*\///') > $dist/Release
+	echo Architectures: $(find $dist -type d -name "binary-*" -printf "%f " | sed -e 's/binary-//g') >> $dist/Release
+	echo Components: $(find $dist/* -prune -type d -printf "%f ")	>> $dist/Release
+	apt-ftparchive release $dist >> $dist/Release
+	gpg -abs -o $dist/Release.gpg $dist/Release
+done
