@@ -27,7 +27,7 @@ cd "$cwd"
 
 for dist in $repo_path/dists/* ; do
 	echo Codename: $(echo $dist | sed -e 's/.*\///') > $dist/Release
-	echo Architectures: $(find $dist -type d -name "binary-*" -printf "%f " | sed -e 's/binary-//g') >> $dist/Release
+	echo Architectures: $(find $dist -type d -name "binary-*" -exec echo {} ';' | sed -e 's/^.*-//'| sort | uniq ) >> $dist/Release
 	echo Components: $(find $dist/* -prune -type d -printf "%f ")	>> $dist/Release
 	apt-ftparchive release $dist >> $dist/Release
 	rm -rf $dist/Release.gpg
