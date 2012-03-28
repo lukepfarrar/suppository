@@ -21,7 +21,7 @@ cd $repo_path
 for dir in $(find $repo_path -type d -name "binary*" -printf "%P\n"); do 
 	dpkg-scanpackages -m $dir > $dir/Packages
 done
-cd $cwd
+cd "$cwd"
 
 for dist in $repo_path/dists/* ; do
 	echo Codename: $(echo $dist | sed -e 's/.*\///') > $dist/Release
