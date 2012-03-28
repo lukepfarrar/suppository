@@ -20,6 +20,8 @@ cwd=$(pwd)
 cd $repo_path
 for dir in $(find $repo_path -type d -name "binary*" -printf "%P\n"); do 
 	dpkg-scanpackages -m $dir > $dir/Packages
+	gzip -c $dir/Packages > $dir/Packages.gz
+	
 done
 cd "$cwd"
 
