@@ -5,7 +5,7 @@ Super Simple Apt Repository (suppository)
 Update:
 -------
 
-After 3 years of faithful service this has been [replaced](TheBookPeople/suppository) by [wgriffiths](wgriffiths).
+After 3 years of faithful service this has been [replaced](https://github.com/TheBookPeople/suppository) by [wgriffiths](https://github.com/wgriffiths).
 The new ruby version is space efficient and much faster, but still does not require any DB etc. (These scripts recreate all the Package files etc.
 which requires checksumming of all packages).
 
