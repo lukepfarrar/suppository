@@ -2,6 +2,13 @@
 Super Simple Apt Repository (suppository)
 =========================================
 
+Update:
+-------
+
+After 3 years of faithful service this has been [replaced](TheBookPeople/suppository) by [wgriffiths](wgriffiths).
+The new ruby version is space efficient and much faster, but still does not require any DB etc. (These scripts recreate all the Package files etc.
+which requires checksumming of all packages).
+
 Introduction
 ------------
 
@@ -9,7 +16,6 @@ These bash scripts create & maintain a simple apt repository.
 
 Reprepro would have been perfect for my needs, if only it supported multiple versions
 of a package. Everything else seems very heavyweight, I just wanted something I could call from Jenkins that generate files to be served by apache.
-
 
 This is desirable for internal repositories which may want to be able to roll back etc.
 
